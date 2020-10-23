@@ -1,0 +1,124 @@
+<h1 class="text-center">
+    Registro de usuario</h1>
+<form (ngSubmit)="agregarUsuario(formulario)" [formGroup]="formulario">
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <label for="">Tipo de usuario</label>
+                    <select name="" id="" class="form-control" formControlName='tipo_documento'>
+                    <option value="">Seleccione</option>
+                    <option value="PA">Pasaporte</option>
+                    <option value="CC">Cedula de ciudadanía</option>
+                    <option value="CE">Cedula de
+                    extranjería</option>
+                </select>
+                    <div *ngIf="getTipoDocumentoNovalid" class="alert alert-danger" role="alert">
+                        El campo Tipo usuario es requerido
+                    </div>
+
+                </div>
+                <div class="col">
+                    <label for="">Identificación</label>
+                    <input type="text" class="form-control" formControlName='identificacion'>
+                    <div *ngIf="getIdentificacionNovalid" class="alert alert-danger" role="alert">
+                        El campo Identificación es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" formControlName='nombres'>
+                    <div *ngIf="getNombreNovalid" class="alert alert-danger" role="alert">
+                        El campo Nombre es requerido
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="">Apellidos</label>
+                    <input type="text" class="form-control" formControlName='apellido'>
+                    <div *ngIf="getApellidoNovalid" class="alert alert-danger" role="alert">
+                        El campo Apellido es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <label for="">Nacionalidad</label>
+                    <select name="" id="" class="form-control" formControlName='nacionalidad'>
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let nacionalidad of nacionalidades" [value]="nacionalidad.name">{{nacionalidad.name}}</option>
+                    </select>
+                    <div *ngIf="getNacionalidadNovalid" class="alert alert-danger" role="alert">
+                        El campo Nacionalidad es requerido
+                    </div>
+
+                </div>
+                <div class="col">
+                    <label for="">Celular</label>
+                    <input type="number" class="form-control" formControlName='celular'>
+                    <div *ngIf="getCelularNovalid" class="alert alert-danger" role="alert">
+                        El campo Celular es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" formControlName='email'>
+                    <div *ngIf="getEmailNovalid" class="alert alert-danger" role="alert">
+                        El campo Email es requerido o es invalido
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <button [disabled]="!botonValid" type="submit" class="form-control btn btn-primary">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                          </svg>
+                        Agregar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</form>
+
+
+
+<table class="table mt-5">
+    <thead class="thead-dark">
+        <tr>
+            <th *ngFor="let tabla of tablas">{{tabla}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dato of datos">
+            <th>{{dato.tipo_documento}}-{{dato.identificacion}}</th>
+            <th>{{dato.nombres}} {{dato.apellido}}</th>
+            <th>{{dato.nacionalidad}}</th>
+            <th>{{dato.celular}}</th>
+            <th>{{dato.email}}</th>
+        </tr>
+    </tbody>
+</table>
